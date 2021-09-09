@@ -97,23 +97,25 @@ namespace WpfApp6
 			TxtMain.Focus();
 		}
 		public bool AutoSave { get; set; }
-		private void CheckBox_Checked(object sender, RoutedEventArgs e)
+		private void ToggleButtonClicked(object sender, RoutedEventArgs e)
 		{
-			if (sender is ToggleButton checkBox)
-				if (checkBox.IsChecked == true)
+			if (sender is ToggleButton tgBtn)
+				if (tgBtn.IsChecked == true)
 					if (!string.IsNullOrWhiteSpace(TxtPath.Text))
 						AutoSave = true;
 					else
-						checkBox.IsChecked=false;
+					{
+						MessageBox.Show("Path Is Empty");
+						tgBtn.IsChecked = false;
+						AutoSave = false;
+					}
 			TxtMain.Focus();
 		}
 
 		private void TxtMain_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (AutoSave)
-			{
 				Button_Click_1(null, null);
-			}
 		}
 	}
 }
